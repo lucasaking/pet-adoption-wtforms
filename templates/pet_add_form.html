@@ -1,0 +1,32 @@
+<html>
+
+<body>
+    <h1>Add/Edit Pet</h1>
+
+{% for msg in get_flashed_messages() %}
+<div>{{ msg }}</div>
+{% endfor %}
+
+<form id="pet-add-form" method="POST">
+    {{ form.hidden_tag() }}
+    <!--add type=hidden form fields -->
+
+    {% for field in form
+         if field.widget.input_type != 'hidden' %}
+
+    <p>
+        {{ field.label }}
+        {{ field }}
+
+        {% for error in field.errors %}
+        {{ error }}
+        {% endfor %}
+    </p>
+
+    {% endfor %}
+
+    <button type="submit">Submit</button>
+</form>
+<a href="/">Go back</a>
+</body>
+</html>
